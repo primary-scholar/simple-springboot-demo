@@ -11,6 +11,7 @@
     <modules>
         <module>springboot-debug</module>
         <module>springboot-demo</module>
+        <module>springboot-dubbo</module>
     </modules>
 
     <name>simple-springboot-demo</name>

@@ -2,7 +2,7 @@ package com.mimu.springboot.dubbo.consumer.service;
 
 import com.mimu.springboot.dubbo.api.api.UserDataApi;
 import com.mimu.springboot.dubbo.api.model.UserData;
-import org.apache.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommonService {
 
-    @Reference(check = false)
+    @DubboReference(check = false)
     private UserDataApi userDataApi;
 
     public UserData getUserData(long pid) {

@@ -4,7 +4,7 @@
         <!--<Property name="path">${sys:server_log_home}</Property>
         <Property name="name">${sys:server_name}</Property>-->
         <Property name="path">logs/</Property>
-        <Property name="name">springboot-dubbo-provider</Property>
+        <Property name="name">springboot-mybatis-demo</Property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
@@ -51,11 +51,8 @@
         <logger name="serverLogger" level="INFO">
             <appender-ref ref="ExposeRollingFileInfo"/>
         </logger>
-        <logger name="org.apache.dubbo.common.logger.LoggerFactory" level="INFO">
-            <appender-ref ref="RollingFileInfo"/>
-        </logger>
 
-        <root level="INFO">
+        <root level="INFo">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
             <appender-ref ref="RollingFileError"/>

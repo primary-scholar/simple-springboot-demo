@@ -4,7 +4,7 @@
         <!--<Property name="path">${sys:server_log_home}</Property>
         <Property name="name">${sys:server_name}</Property>-->
         <Property name="path">logs/</Property>
-        <Property name="name">springboot-demo</Property>
+        <Property name="name">springboot-dubbo-api</Property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">

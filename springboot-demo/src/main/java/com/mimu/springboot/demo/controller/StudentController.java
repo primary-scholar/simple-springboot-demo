@@ -1,6 +1,5 @@
 package com.mimu.springboot.demo.controller;
 
-import com.mimu.springboot.demo.model.SchoolSchoolInfo;
 import com.mimu.springboot.demo.model.StudentStudentInfo;
 import com.mimu.springboot.demo.request.StudentRequest;
 import com.mimu.springboot.demo.service.StudentService;

@@ -1,6 +1,5 @@
 package com.mimu.springboot.demo.request;
 
-
 import java.util.Objects;
 
 /**

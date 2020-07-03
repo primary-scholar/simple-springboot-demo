@@ -2,7 +2,6 @@ package com.mimu.springboot.demo.controller;
 
 import com.mimu.springboot.demo.model.SchoolSchoolInfo;
 import com.mimu.springboot.demo.request.SchoolRequest;
-import com.mimu.springboot.demo.service.CommonService;
 import com.mimu.springboot.demo.service.SchoolService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

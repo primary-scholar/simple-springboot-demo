@@ -49,13 +49,13 @@ public class AppDataSourceConfig {
     @Bean
     public DataSource schoolDataSource() {
         DataSourceProperties properties = schoolDataSourceProperties();
-        logger.info("init fdbDataSource");
+        logger.info("init schoolDataSource");
         return properties.initializeDataSourceBuilder().build();
     }
 
     @Bean
     public DataSource studentDataSource(DataSourceProperties studentDataSourceProperties) {
-        logger.info("init sdbDataSource");
+        logger.info("init studentDataSource");
         return studentDataSourceProperties.initializeDataSourceBuilder().build();
     }
 

@@ -31,19 +31,14 @@ public class StudentRepository {
         return studentJdbcTemplate.update(sql, name, no) > 0;
     }
 
-    public boolean addUserInfo(long pid, String nickName) {
-        String sql = "insert into user_info (`person_name`, `person_id`) values (?,?)";
-        return studentJdbcTemplate.update(sql, pid, nickName) > 0;
+    public boolean addStudentInfo(int no, String name, int sex) {
+        String sql = "insert into student_info (`no`, `name`, `sex`) values (?,?,?)";
+        return studentJdbcTemplate.update(sql, no, name, sex) > 0;
     }
 
-    public boolean deleteUserInfo(long pid) {
-        String sql = "delete from user_info where person_id=?";
-        return studentJdbcTemplate.update(sql, pid) > 0;
-    }
-
-    public boolean addTermInfo(long pid, int termId) {
-        String sql = "insert into term_info (`term_id`, `person_id`) values (?,?)";
-        return studentJdbcTemplate.update(sql, termId, pid) > 0;
+    public boolean deleteStudentInfo(long no) {
+        String sql = "delete from student_info where no=?";
+        return studentJdbcTemplate.update(sql, no) > 0;
     }
 
 }

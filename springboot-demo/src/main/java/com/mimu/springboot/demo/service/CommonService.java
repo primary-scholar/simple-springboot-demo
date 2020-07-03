@@ -4,7 +4,6 @@ import com.mimu.springboot.demo.dao.SchoolRepository;
 import com.mimu.springboot.demo.dao.StudentRepository;
 import com.mimu.springboot.demo.model.SchoolSchoolInfo;
 import com.mimu.springboot.demo.model.StudentStudentInfo;
-import com.mimu.springboot.demo.request.SchoolRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,9 @@ public class CommonService {
         this.schoolRepository = schoolRepository;
     }
 
-    @Transactional(transactionManager = "userTxManager", rollbackFor = RuntimeException.class)
-    public boolean updateInfo(int pid, String nickName, int termId) {
-        return addTermInfo1(pid, termId) && addUserInfo(pid, nickName);
+    @Transactional(transactionManager = "schoolTxManager", rollbackFor = RuntimeException.class)
+    public boolean updateInfo(int serial, String schoolName, String schoolAddress, int no, String courseName, int hour) {
+        return addSchoolInfo(serial, schoolName, schoolAddress) && addCourseInfo(no, courseName, hour);
     }
 
     public SchoolSchoolInfo getSchoolInfo(int serial) {
@@ -49,29 +48,20 @@ public class CommonService {
         return studentInfo;
     }
 
-    private boolean addTermInfo(int pid, int termId) {
-        if (!schoolRepository.addTermInfo(pid, termId)) {
-            throw new RuntimeException("insert termData error");
+    private boolean addSchoolInfo(int serial, String name, String address) {
+        if (!schoolRepository.addSchoolInfo(serial, name, address)) {
+            throw new RuntimeException("insert school error");
         } else {
             return true;
         }
     }
 
-    private boolean addUserInfo(int pid, String nickName) {
-        if (!studentRepository.addUserInfo(pid, nickName)) {
-            throw new RuntimeException("insert termData error");
+    private boolean addCourseInfo(int no, String name, int hour) {
+        if (!schoolRepository.addCourseInfo(no, name, hour)) {
+            throw new RuntimeException("insert course error");
         } else {
             return true;
         }
     }
-
-    private boolean addTermInfo1(long pid, int termId) {
-        if (!studentRepository.addTermInfo(pid, termId)) {
-            throw new RuntimeException("insert termData error");
-        } else {
-            return true;
-        }
-    }
-
 
 }

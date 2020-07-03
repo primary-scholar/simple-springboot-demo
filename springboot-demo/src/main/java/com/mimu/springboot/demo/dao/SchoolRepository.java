@@ -33,8 +33,13 @@ public class SchoolRepository {
         return schoolInfoList.isEmpty() ? new SchoolSchoolInfo() : schoolInfoList.get(0);
     }
 
-    public boolean addTermInfo(long pid, int termId) {
-        String sql = "insert into term_info (`term_id`, `person_id`) values (?,?)";
-        return schoolJdbcTemplate.update(sql, termId, pid) > 0;
+    public boolean addSchoolInfo(int serial, String name, String address) {
+        String sql = "insert into school_info (`serial`, `name`, `address`) values (?,?,?)";
+        return schoolJdbcTemplate.update(sql, serial, name, address) > 0;
+    }
+
+    public boolean addCourseInfo(int no, String name, int hour) {
+        String sql = "insert into course_info (`no`, `name`, `hour`) values (?,?,?)";
+        return schoolJdbcTemplate.update(sql, no, name, hour) > 0;
     }
 }

@@ -29,10 +29,18 @@ import java.time.Duration;
 public class StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
 
-    @Autowired
     private StringRedisTemplate redisTemplate;
-    @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    public void setRedisTemplate(StringRedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
+
+    @Autowired
+    public void setStudentRepository(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     public StudentStudentInfo getStudentInfo(StudentRequest request) {
         String key = "mo::stu_" + request.getNo();
@@ -72,18 +80,16 @@ public class StudentService {
      * @return
      */
     @CachePut(cacheNames = RedisTTlConstant.minute_1_info, key = "'stu_'+#request.no")
-    public boolean updateUserInfo(StudentRequest request) {
-        return studentRepository.updateStudent(request.getNo(), request.getName());
+    public StudentStudentInfo updateStudentInfo(StudentRequest request) {
+        if (studentRepository.updateStudent(request.getNo(), request.getName())) {
+            return studentRepository.getStudentInfo(request.getNo());
+        }
+        return null;
     }
 
 
-    @CacheEvict(cacheNames = RedisTTlConstant.minute_1_info, key = "'stu_'+#userInfo.personId")
-    public boolean updateUser(StudentRequest request) {
-        return studentRepository.updateStudent(request.getNo(), request.getName());
-    }
-
-    public boolean deleteUserInfo(int pid) {
-        boolean b = studentRepository.deleteUserInfo(pid);
+    public boolean deleteStudentInfo(int pid) {
+        boolean b = studentRepository.deleteStudentInfo(pid);
         if (b) {
             String key = "mo::stu_" + pid;
             redisTemplate.delete(key);
@@ -93,13 +99,13 @@ public class StudentService {
 
     /**
      * 这里 CacheEvict 执行逻辑:
-     * 和 {@link StudentService #deleteUserInfo(int pid) 逻辑 一致 key 的拼接也是 一致的 }
+     * 和 {@link StudentService #deleteStudentInfo(int pid) 逻辑 一致 key 的拼接也是 一致的 }
      *
      * @param personId
      * @return
      */
     @CacheEvict(cacheNames = RedisTTlConstant.minute_1_info, key = "'user_'+#p0")
     public boolean deleteUserInfoCacheEvitEquivalent(int personId) {
-        return studentRepository.deleteUserInfo(personId);
+        return studentRepository.deleteStudentInfo(personId);
     }
 }

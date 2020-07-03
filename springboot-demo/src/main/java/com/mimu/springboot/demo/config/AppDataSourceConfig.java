@@ -62,19 +62,17 @@ public class AppDataSourceConfig {
     /**
      * generate db transactionManager bean
      *
-     * @param userDataSource
+     * @param
      * @return
      */
     @Bean
-    @Resource
-    public PlatformTransactionManager schoolTxManager(DataSource userDataSource) {
-        return new DataSourceTransactionManager(userDataSource);
+    public PlatformTransactionManager schoolTxManager(DataSource schoolDataSource) {
+        return new DataSourceTransactionManager(schoolDataSource);
     }
 
     @Bean
-    @Resource
-    public PlatformTransactionManager studentTxManager(DataSource termDataSource) {
-        return new DataSourceTransactionManager(termDataSource);
+    public PlatformTransactionManager studentTxManager(DataSource studentDataSource) {
+        return new DataSourceTransactionManager(studentDataSource);
     }
 
     /**

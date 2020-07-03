@@ -2,9 +2,9 @@ package com.mimu.springboot.demo.service;
 
 import com.mimu.springboot.demo.dao.SchoolRepository;
 import com.mimu.springboot.demo.dao.StudentRepository;
-import com.mimu.springboot.demo.model.TermInfo;
-import com.mimu.springboot.demo.model.UserInfo;
-import com.mimu.springboot.demo.request.UserInfoRequest;
+import com.mimu.springboot.demo.model.SchoolSchoolInfo;
+import com.mimu.springboot.demo.model.StudentStudentInfo;
+import com.mimu.springboot.demo.request.SchoolRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,23 +32,21 @@ public class CommonService {
         this.schoolRepository = schoolRepository;
     }
 
-    public UserInfo getUserInfo(int pid) {
-        return studentRepository.getUserInfo(pid);
-    }
-
-    public TermInfo getTermInfo(int pid) {
-        return schoolRepository.getTermInfo(pid);
-    }
-
     @Transactional(transactionManager = "userTxManager", rollbackFor = RuntimeException.class)
     public boolean updateInfo(int pid, String nickName, int termId) {
         return addTermInfo1(pid, termId) && addUserInfo(pid, nickName);
     }
 
-    public UserInfo getUserInfo(UserInfoRequest request) {
-        UserInfo userInfo = studentRepository.getUserInfo(request.getPid());
-        logger.info("{}", userInfo);
-        return userInfo;
+    public SchoolSchoolInfo getSchoolInfo(int serial) {
+        SchoolSchoolInfo schoolInfo = schoolRepository.getSchoolInfo(serial);
+        logger.info("{}", schoolInfo);
+        return schoolInfo;
+    }
+
+    public StudentStudentInfo getStudentInfo(int no) {
+        StudentStudentInfo studentInfo = studentRepository.getStudentInfo(no);
+        logger.info("{}", studentInfo);
+        return studentInfo;
     }
 
     private boolean addTermInfo(int pid, int termId) {

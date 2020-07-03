@@ -1,13 +1,10 @@
 package com.mimu.springboot.demo.dao;
 
-import com.mimu.springboot.demo.model.UserInfo;
+import com.mimu.springboot.demo.model.StudentStudentInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,10 +20,15 @@ public class StudentRepository {
         this.studentJdbcTemplate = studentJdbcTemplate;
     }
 
-    public UserInfo getUserInfo(long pid) {
-        String sql = "select * from user_info where person_id=?";
-        List<UserInfo> userInfoList = studentJdbcTemplate.query(sql, new UserInfoMapper(), pid);
-        return userInfoList.isEmpty() ? new UserInfo() : userInfoList.get(0);
+    public StudentStudentInfo getStudentInfo(int no) {
+        String sql = "select * from student_info where no=?";
+        List<StudentStudentInfo> studentInfoList = studentJdbcTemplate.queryForList(sql, StudentStudentInfo.class, no);
+        return studentInfoList.isEmpty() ? null : studentInfoList.get(0);
+    }
+
+    public boolean updateStudent(int no, String name) {
+        String sql = "update student_info set name=? where no=?";
+        return studentJdbcTemplate.update(sql, name, no) > 0;
     }
 
     public boolean addUserInfo(long pid, String nickName) {
@@ -44,20 +46,4 @@ public class StudentRepository {
         return studentJdbcTemplate.update(sql, termId, pid) > 0;
     }
 
-    public boolean updateUserInfo(UserInfo userInfo) {
-        String sql = "update user_info set person_name=? where person_id=?";
-        return studentJdbcTemplate.update(sql, userInfo.getPersonName(), userInfo.getPersonId()) > 0;
-    }
-
-    public class UserInfoMapper implements RowMapper<UserInfo> {
-
-        @Override
-        public UserInfo mapRow(ResultSet resultSet, int i) throws SQLException {
-            UserInfo userInfo = new UserInfo();
-            userInfo.setId(resultSet.getInt("id"));
-            userInfo.setPersonId(resultSet.getInt("person_id"));
-            userInfo.setPersonName(resultSet.getString("person_name"));
-            return userInfo;
-        }
-    }
 }

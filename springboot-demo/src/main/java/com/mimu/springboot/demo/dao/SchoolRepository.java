@@ -1,10 +1,16 @@
 package com.mimu.springboot.demo.dao;
 
-import com.mimu.springboot.demo.model.TermInfo;
+import com.mimu.springboot.demo.model.SchoolSchoolInfo;
+import com.mysql.cj.protocol.ResultsetRow;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -17,19 +23,14 @@ public class SchoolRepository {
     private JdbcTemplate schoolJdbcTemplate;
 
     @Autowired
-    public void setTermInfoJdbcTemplate(JdbcTemplate schoolJdbcTemplate) {
+    public void setSchoolJdbcTemplate(JdbcTemplate schoolJdbcTemplate) {
         this.schoolJdbcTemplate = schoolJdbcTemplate;
     }
 
-    public TermInfo getTermInfo(long pid) {
-        String sql = "select * from term_info where person_id=?";
-        List<TermInfo> termInfoList = schoolJdbcTemplate.query(sql, (resultSet, i) -> {
-            TermInfo termInfo = new TermInfo();
-            termInfo.setPersonId(resultSet.getInt("person_id"));
-            termInfo.setTermId(resultSet.getInt("term_id"));
-            return termInfo;
-        }, pid);
-        return termInfoList.isEmpty() ? null : termInfoList.get(0);
+    public SchoolSchoolInfo getSchoolInfo(long serial) {
+        String sql = "select * from school_info where serial=?";
+        List<SchoolSchoolInfo> schoolInfoList = schoolJdbcTemplate.queryForList(sql, SchoolSchoolInfo.class, serial);
+        return schoolInfoList.isEmpty() ? new SchoolSchoolInfo() : schoolInfoList.get(0);
     }
 
     public boolean addTermInfo(long pid, int termId) {

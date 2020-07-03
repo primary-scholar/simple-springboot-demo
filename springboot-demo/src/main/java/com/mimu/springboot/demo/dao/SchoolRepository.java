@@ -13,17 +13,17 @@ import java.util.List;
  * date: 2019/7/7
  */
 @Repository
-public class TermInfoRepository {
-    private JdbcTemplate termInfoJdbcTemplate;
+public class SchoolRepository {
+    private JdbcTemplate schoolJdbcTemplate;
 
     @Autowired
-    public void setTermInfoJdbcTemplate(JdbcTemplate termInfoJdbcTemplate) {
-        this.termInfoJdbcTemplate = termInfoJdbcTemplate;
+    public void setTermInfoJdbcTemplate(JdbcTemplate schoolJdbcTemplate) {
+        this.schoolJdbcTemplate = schoolJdbcTemplate;
     }
 
     public TermInfo getTermInfo(long pid) {
         String sql = "select * from term_info where person_id=?";
-        List<TermInfo> termInfoList = termInfoJdbcTemplate.query(sql, (resultSet, i) -> {
+        List<TermInfo> termInfoList = schoolJdbcTemplate.query(sql, (resultSet, i) -> {
             TermInfo termInfo = new TermInfo();
             termInfo.setPersonId(resultSet.getInt("person_id"));
             termInfo.setTermId(resultSet.getInt("term_id"));
@@ -34,6 +34,6 @@ public class TermInfoRepository {
 
     public boolean addTermInfo(long pid, int termId) {
         String sql = "insert into term_info (`term_id`, `person_id`) values (?,?)";
-        return termInfoJdbcTemplate.update(sql, termId, pid) > 0;
+        return schoolJdbcTemplate.update(sql, termId, pid) > 0;
     }
 }

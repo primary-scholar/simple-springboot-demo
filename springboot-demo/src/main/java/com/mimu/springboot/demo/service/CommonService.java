@@ -1,7 +1,7 @@
 package com.mimu.springboot.demo.service;
 
-import com.mimu.springboot.demo.dao.TermInfoRepository;
-import com.mimu.springboot.demo.dao.UserInfoRepository;
+import com.mimu.springboot.demo.dao.SchoolRepository;
+import com.mimu.springboot.demo.dao.StudentRepository;
 import com.mimu.springboot.demo.model.TermInfo;
 import com.mimu.springboot.demo.model.UserInfo;
 import com.mimu.springboot.demo.request.UserInfoRequest;
@@ -19,25 +19,25 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommonService {
     private static final Logger logger = LoggerFactory.getLogger(CommonService.class);
 
-    private TermInfoRepository termInfoRepository;
-    private UserInfoRepository userInfoRepository;
+    private SchoolRepository schoolRepository;
+    private StudentRepository studentRepository;
 
     @Autowired
-    public void setUserInfoRepository(UserInfoRepository userInfoRepository) {
-        this.userInfoRepository = userInfoRepository;
+    public void setStudentRepository(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     @Autowired
-    public void setTermInfoRepository(TermInfoRepository termInfoRepository) {
-        this.termInfoRepository = termInfoRepository;
+    public void setSchoolRepository(SchoolRepository schoolRepository) {
+        this.schoolRepository = schoolRepository;
     }
 
     public UserInfo getUserInfo(int pid) {
-        return userInfoRepository.getUserInfo(pid);
+        return studentRepository.getUserInfo(pid);
     }
 
     public TermInfo getTermInfo(int pid) {
-        return termInfoRepository.getTermInfo(pid);
+        return schoolRepository.getTermInfo(pid);
     }
 
     @Transactional(transactionManager = "userTxManager", rollbackFor = RuntimeException.class)
@@ -46,13 +46,13 @@ public class CommonService {
     }
 
     public UserInfo getUserInfo(UserInfoRequest request) {
-        UserInfo userInfo = userInfoRepository.getUserInfo(request.getPid());
+        UserInfo userInfo = studentRepository.getUserInfo(request.getPid());
         logger.info("{}", userInfo);
         return userInfo;
     }
 
     private boolean addTermInfo(int pid, int termId) {
-        if (!termInfoRepository.addTermInfo(pid, termId)) {
+        if (!schoolRepository.addTermInfo(pid, termId)) {
             throw new RuntimeException("insert termData error");
         } else {
             return true;
@@ -60,7 +60,7 @@ public class CommonService {
     }
 
     private boolean addUserInfo(int pid, String nickName) {
-        if (!userInfoRepository.addUserInfo(pid, nickName)) {
+        if (!studentRepository.addUserInfo(pid, nickName)) {
             throw new RuntimeException("insert termData error");
         } else {
             return true;
@@ -68,7 +68,7 @@ public class CommonService {
     }
 
     private boolean addTermInfo1(long pid, int termId) {
-        if (!userInfoRepository.addTermInfo(pid, termId)) {
+        if (!studentRepository.addTermInfo(pid, termId)) {
             throw new RuntimeException("insert termData error");
         } else {
             return true;

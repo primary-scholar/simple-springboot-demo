@@ -15,38 +15,38 @@ import java.util.List;
  * date: 2019/7/7
  */
 @Repository
-public class UserInfoRepository {
-    private JdbcTemplate userInfoJdbcTemplate;
+public class StudentRepository {
+    private JdbcTemplate studentJdbcTemplate;
 
     @Autowired
-    public void setUserInfoJdbcTemplate(JdbcTemplate userInfoJdbcTemplate) {
-        this.userInfoJdbcTemplate = userInfoJdbcTemplate;
+    public void setUserInfoJdbcTemplate(JdbcTemplate studentJdbcTemplate) {
+        this.studentJdbcTemplate = studentJdbcTemplate;
     }
 
     public UserInfo getUserInfo(long pid) {
         String sql = "select * from user_info where person_id=?";
-        List<UserInfo> userInfoList = userInfoJdbcTemplate.query(sql, new UserInfoMapper(), pid);
+        List<UserInfo> userInfoList = studentJdbcTemplate.query(sql, new UserInfoMapper(), pid);
         return userInfoList.isEmpty() ? new UserInfo() : userInfoList.get(0);
     }
 
     public boolean addUserInfo(long pid, String nickName) {
         String sql = "insert into user_info (`person_name`, `person_id`) values (?,?)";
-        return userInfoJdbcTemplate.update(sql, pid, nickName) > 0;
+        return studentJdbcTemplate.update(sql, pid, nickName) > 0;
     }
 
     public boolean deleteUserInfo(long pid) {
         String sql = "delete from user_info where person_id=?";
-        return userInfoJdbcTemplate.update(sql, pid) > 0;
+        return studentJdbcTemplate.update(sql, pid) > 0;
     }
 
     public boolean addTermInfo(long pid, int termId) {
         String sql = "insert into term_info (`term_id`, `person_id`) values (?,?)";
-        return userInfoJdbcTemplate.update(sql, termId, pid) > 0;
+        return studentJdbcTemplate.update(sql, termId, pid) > 0;
     }
 
     public boolean updateUserInfo(UserInfo userInfo) {
         String sql = "update user_info set person_name=? where person_id=?";
-        return userInfoJdbcTemplate.update(sql, userInfo.getPersonName(), userInfo.getPersonId()) > 0;
+        return studentJdbcTemplate.update(sql, userInfo.getPersonName(), userInfo.getPersonId()) > 0;
     }
 
     public class UserInfoMapper implements RowMapper<UserInfo> {

@@ -30,14 +30,14 @@ public class AppDataSourceConfig {
      * @return
      */
     @Bean
-    @ConfigurationProperties(prefix = "user.datasource")
-    public DataSourceProperties userDataSourceProperties() {
+    @ConfigurationProperties(prefix = "school.datasource")
+    public DataSourceProperties schoolDataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "term.datasource")
-    public DataSourceProperties termDataSourceProperties() {
+    @ConfigurationProperties(prefix = "student.datasource")
+    public DataSourceProperties studentDataSourceProperties() {
         return new DataSourceProperties();
     }
 
@@ -47,17 +47,16 @@ public class AppDataSourceConfig {
      * @return
      */
     @Bean
-    public DataSource userDataSource() {
-        DataSourceProperties properties = userDataSourceProperties();
+    public DataSource schoolDataSource() {
+        DataSourceProperties properties = schoolDataSourceProperties();
         logger.info("init fdbDataSource");
         return properties.initializeDataSourceBuilder().build();
     }
 
     @Bean
-    public DataSource termDataSource(DataSourceProperties termDataSourceProperties) {
-        //DataSourceProperties db2Properties = sdbDataSourceProperties();
+    public DataSource studentDataSource(DataSourceProperties studentDataSourceProperties) {
         logger.info("init sdbDataSource");
-        return termDataSourceProperties.initializeDataSourceBuilder().build();
+        return studentDataSourceProperties.initializeDataSourceBuilder().build();
     }
 
     /**
@@ -68,32 +67,32 @@ public class AppDataSourceConfig {
      */
     @Bean
     @Resource
-    public PlatformTransactionManager userTxManager(DataSource userDataSource) {
+    public PlatformTransactionManager schoolTxManager(DataSource userDataSource) {
         return new DataSourceTransactionManager(userDataSource);
     }
 
     @Bean
     @Resource
-    public PlatformTransactionManager termTxManager(DataSource termDataSource) {
+    public PlatformTransactionManager studentTxManager(DataSource termDataSource) {
         return new DataSourceTransactionManager(termDataSource);
     }
 
     /**
      * generate jdbcTemplate bean
      *
-     * @param userDataSource
+     * @param schoolDataSource
      * @return
      */
     @Bean
     @Autowired
-    public JdbcTemplate userInfoJdbcTemplate(DataSource userDataSource) {
-        return new JdbcTemplate(userDataSource);
+    public JdbcTemplate schoolJdbcTemplate(DataSource schoolDataSource) {
+        return new JdbcTemplate(schoolDataSource);
     }
 
     @Bean
     @Autowired
-    public JdbcTemplate termInfoJdbcTemplate(DataSource termDataSource) {
-        return new JdbcTemplate(termDataSource);
+    public JdbcTemplate studentJdbcTemplate(DataSource studentDataSource) {
+        return new JdbcTemplate(studentDataSource);
     }
 
 }

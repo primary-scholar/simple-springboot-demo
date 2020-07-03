@@ -30,8 +30,8 @@ public class DataSourceConfig {
      * @return
      */
     @Bean
-    @ConfigurationProperties(prefix = "user.datasource")
-    public DataSourceProperties userDataSourceProperties() {
+    @ConfigurationProperties(prefix = "school.datasource")
+    public DataSourceProperties schoolDataSourceProperties() {
         return new DataSourceProperties();
     }
 
@@ -41,34 +41,34 @@ public class DataSourceConfig {
      * @return
      */
     @Bean
-    public DataSource userDataSource() {
-        DataSourceProperties properties = userDataSourceProperties();
-        logger.info("init fdbDataSource");
+    public DataSource schoolDataSource() {
+        DataSourceProperties properties = schoolDataSourceProperties();
+        logger.info("init studentDataSource");
         return properties.initializeDataSourceBuilder().build();
     }
 
     /**
      * generate db transactionManager bean
      *
-     * @param userDataSource
+     * @param schoolDataSource
      * @return
      */
     @Bean
     @Resource
-    public PlatformTransactionManager userTxManager(DataSource userDataSource) {
-        return new DataSourceTransactionManager(userDataSource);
+    public PlatformTransactionManager schoolTxManager(DataSource schoolDataSource) {
+        return new DataSourceTransactionManager(schoolDataSource);
     }
 
 
     /**
      * generate jdbcTemplate bean
      *
-     * @param userDataSource
+     * @param schoolDataSource
      * @return
      */
     @Bean
     @Autowired
-    public JdbcTemplate userJdbcTemplate(DataSource userDataSource) {
-        return new JdbcTemplate(userDataSource);
+    public JdbcTemplate StudentJdbcTemplate(DataSource schoolDataSource) {
+        return new JdbcTemplate(schoolDataSource);
     }
 }

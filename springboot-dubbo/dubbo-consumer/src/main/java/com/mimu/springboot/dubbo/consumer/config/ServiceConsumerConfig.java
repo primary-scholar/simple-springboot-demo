@@ -22,7 +22,7 @@ public class ServiceConsumerConfig {
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("sdb-service-consumer");
+        applicationConfig.setName("dubbo-service-consumer");
         return applicationConfig;
     }
 

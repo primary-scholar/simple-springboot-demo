@@ -1,6 +1,6 @@
 package com.mimu.springboot.dubbo.provider.config;
 
-import com.mimu.springboot.dubbo.provider.service.UserDataApiImpl;
+import com.mimu.springboot.dubbo.provider.service.dubbo.SchoolDataApiImpl;
 import org.apache.dubbo.config.*;
 import org.apache.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.springframework.context.annotation.Bean;
@@ -14,13 +14,13 @@ import java.util.Map;
  * date: 2019/8/18
  */
 @Configuration
-@DubboComponentScan(basePackageClasses = UserDataApiImpl.class)
+@DubboComponentScan(basePackageClasses = SchoolDataApiImpl.class)
 public class ServiceProviderConfig {
 
     @Bean
     public ApplicationConfig applicationConfig() {
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("sbd-service-provider");
+        applicationConfig.setName("dubbo-service-provider");
         return applicationConfig;
     }
 

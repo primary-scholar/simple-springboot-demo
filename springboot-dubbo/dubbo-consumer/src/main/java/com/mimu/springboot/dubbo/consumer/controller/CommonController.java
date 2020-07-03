@@ -1,6 +1,6 @@
 package com.mimu.springboot.dubbo.consumer.controller;
 
-import com.mimu.springboot.dubbo.api.model.UserData;
+import com.mimu.springboot.dubbo.api.model.SchoolData;
 import com.mimu.springboot.dubbo.consumer.service.CommonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +24,10 @@ public class CommonController {
         this.commonService = commonService;
     }
 
-    @RequestMapping(value = "/sb/info.go", method = RequestMethod.GET)
-    public UserData getUserData(long pid) {
-        UserData userData = commonService.getUserData(pid);
-        logger.info("userInfo={}", userData);
-        return userData;
+    @RequestMapping(value = "/consumer/school.do", method = RequestMethod.GET)
+    public SchoolData getSchoolData(int serial) {
+        SchoolData schoolData = commonService.getSchoolData(serial);
+        logger.info("schoolData={}", schoolData);
+        return schoolData;
     }
 }

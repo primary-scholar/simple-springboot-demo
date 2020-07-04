@@ -1,8 +1,7 @@
 package com.mimu.springboot.mybatis.demo.config;
 
-
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.mimu.springboot.mybatis.demo.mapper.term.TermDataMapper;
+import com.mimu.springboot.mybatis.demo.mapper.student.StudentDataMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -29,9 +28,9 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackageClasses = TermDataMapper.class, sqlSessionFactoryRef = "termSqlSessionFactory")
-public class TermInfoDataSourceConfig {
-    private static final Logger logger = LoggerFactory.getLogger(TermInfoDataSourceConfig.class);
+@MapperScan(basePackageClasses = StudentDataMapper.class, sqlSessionFactoryRef = "studentSqlSessionFactory")
+public class StudentDataSourceConfig {
+    private static final Logger logger = LoggerFactory.getLogger(StudentDataSourceConfig.class);
 
     /**
      * generate datasource
@@ -39,29 +38,29 @@ public class TermInfoDataSourceConfig {
      * @return
      */
     @Bean
-    @ConfigurationProperties(prefix = "term.datasource")
-    public DataSource termDataSource() {
-        logger.info("init termDataSource");
+    @ConfigurationProperties(prefix = "student.datasource")
+    public DataSource studentDataSource() {
+        logger.info("init studentDataSource");
         return DruidDataSourceBuilder.create().build();
     }
 
     /**
      * generate db transactionManager bean
      *
-     * @param termDataSource
+     * @param studentDataSource
      * @return
      */
     @Bean
     @Resource
-    public PlatformTransactionManager termDataSourceTxManager(DataSource termDataSource) {
-        return new DataSourceTransactionManager(termDataSource);
+    public PlatformTransactionManager studentDataSourceTxManager(DataSource studentDataSource) {
+        return new DataSourceTransactionManager(studentDataSource);
     }
 
     @Bean
     @Resource
-    public SqlSessionFactory termSqlSessionFactory(DataSource termDataSource) throws Exception {
+    public SqlSessionFactory studentSqlSessionFactory(DataSource studentDataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource(termDataSource);
+        sqlSessionFactory.setDataSource(studentDataSource);
         sqlSessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
         return sqlSessionFactory.getObject();
     }

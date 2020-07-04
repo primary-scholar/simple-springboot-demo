@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Import;
  * date: 2019/10/30
  */
 @Configuration
-@Import(value = {TermInfoDataSourceConfig.class, UserInfoDataSourceConfig.class})
+@Import(value = {SchoolDataSourceConfig.class, StudentDataSourceConfig.class})
 public class ApplicationConfig {
 }

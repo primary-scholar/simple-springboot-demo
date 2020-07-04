@@ -2,8 +2,8 @@ package com.mimu.springboot.mybatis.demo;
 
 
 import com.mimu.springboot.mybatis.demo.config.ApplicationConfig;
-import com.mimu.springboot.mybatis.demo.mapper.term.TermDataMapper;
-import com.mimu.springboot.mybatis.demo.mapper.user.UserDataMapper;
+import com.mimu.springboot.mybatis.demo.mapper.school.SchoolDataMapper;
+import com.mimu.springboot.mybatis.demo.mapper.student.StudentDataMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
@@ -24,26 +24,26 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Import(value = {ApplicationConfig.class})
 public class CommonServiceTest {
 
-    private TermDataMapper termDataMapper;
-    private UserDataMapper userDataMapper;
+    private SchoolDataMapper schoolDataMapper;
+    private StudentDataMapper studentDataMapper;
 
     @Autowired
-    public void setTermDataMapper(TermDataMapper termDataMapper) {
-        this.termDataMapper = termDataMapper;
+    public void setSchoolDataMapper(SchoolDataMapper schoolDataMapper) {
+        this.schoolDataMapper = schoolDataMapper;
     }
 
     @Autowired
-    public void setUserDataMapper(UserDataMapper userDataMapper) {
-        this.userDataMapper = userDataMapper;
+    public void setStudentDataMapper(StudentDataMapper studentDataMapper) {
+        this.studentDataMapper = studentDataMapper;
     }
 
     @Test
     public void info() {
-        System.out.println(termDataMapper.getTermInfoById(1));
+        System.out.println(schoolDataMapper.getSchoolInfo(1));
     }
 
     @Test
     public void info1() {
-        System.out.println(userDataMapper.getUserInfoById(20));
+        System.out.println(studentDataMapper.getStudentInfo(20));
     }
 }

@@ -2,6 +2,9 @@ package com.mimu.springboot.mybatis.generator.service;
 
 import com.mimu.springboot.mybatis.generator.mapper.school.CourseInfoMapper;
 import com.mimu.springboot.mybatis.generator.mapper.school.SchoolInfoMapper;
+import com.mimu.springboot.mybatis.generator.mapper.student.StudentInfoMapper;
+import com.mimu.springboot.mybatis.generator.model.school.SchoolInfo;
+import com.mimu.springboot.mybatis.generator.model.student.StudentInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +15,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommonService {
 
-    private CourseInfoMapper courseInfoMapper;
+    private StudentInfoMapper studentInfoMapper;
     private SchoolInfoMapper schoolInfoMapper;
 
     @Autowired
-    public void setCourseInfoMapper(CourseInfoMapper courseInfoMapper) {
-        this.courseInfoMapper = courseInfoMapper;
+    public void setStudentInfoMapper(StudentInfoMapper studentInfoMapper) {
+        this.studentInfoMapper = studentInfoMapper;
     }
 
     @Autowired
@@ -25,5 +28,12 @@ public class CommonService {
         this.schoolInfoMapper = schoolInfoMapper;
     }
 
+    public SchoolInfo getSchoolInfo(int serial) {
+        return schoolInfoMapper.selectBySerial(serial);
+    }
+
+    public StudentInfo getStudentInfo(int no) {
+        return studentInfoMapper.selectByNo(no);
+    }
 
 }

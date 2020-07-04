@@ -10,25 +10,25 @@ import org.apache.ibatis.annotations.Update;
 
 public interface ClassInfoMapper {
     @Delete({
-        "delete from class_info",
-        "where id = #{id,jdbcType=INTEGER}"
+            "delete from class_info",
+            "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into class_info (academy, grade)",
-        "values (#{academy,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR})"
+            "insert into class_info (academy, grade)",
+            "values (#{academy,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR})"
     })
-    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Integer.class)
     int insert(ClassInfo record);
 
     int insertSelective(ClassInfo record);
 
     @Select({
-        "select",
-        "id, academy, grade",
-        "from class_info",
-        "where id = #{id,jdbcType=INTEGER}"
+            "select",
+            "id, academy, grade",
+            "from class_info",
+            "where id = #{id,jdbcType=INTEGER}"
     })
     @ResultMap("com.mimu.springboot.mybatis.generator.mapper.student.ClassInfoMapper.BaseResultMap")
     ClassInfo selectByPrimaryKey(Integer id);
@@ -36,10 +36,10 @@ public interface ClassInfoMapper {
     int updateByPrimaryKeySelective(ClassInfo record);
 
     @Update({
-        "update class_info",
-        "set academy = #{academy,jdbcType=VARCHAR},",
-          "grade = #{grade,jdbcType=VARCHAR}",
-        "where id = #{id,jdbcType=INTEGER}"
+            "update class_info",
+            "set academy = #{academy,jdbcType=VARCHAR},",
+            "grade = #{grade,jdbcType=VARCHAR}",
+            "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(ClassInfo record);
 }

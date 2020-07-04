@@ -1,6 +1,6 @@
 package com.mimu.springboot.mybatis.generator;
 
-import com.mimu.simple.springboot.mybatis.multipledb.config.ApplicationConfig;
+import com.mimu.springboot.mybatis.generator.config.ApplicationConfig;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Import;
 @Import(value = {ApplicationConfig.class})
 public class SpringbootMybatisApplication {
     public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(com.mimu.simple.springboot.mybatis.multipledb.SBMMDApplication.class);
+        SpringApplication application = new SpringApplication(SpringbootMybatisApplication.class);
         application.setBannerMode(Banner.Mode.OFF);
         application.run();
     }

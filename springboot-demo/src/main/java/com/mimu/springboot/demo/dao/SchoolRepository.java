@@ -2,10 +2,12 @@ package com.mimu.springboot.demo.dao;
 
 import com.mimu.springboot.demo.model.SchoolSchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -23,8 +25,8 @@ public class SchoolRepository {
 
     public SchoolSchoolInfo getSchoolInfo(long serial) {
         String sql = "select * from school_info where serial=?";
-        List<SchoolSchoolInfo> schoolInfoList = schoolJdbcTemplate.queryForList(sql, SchoolSchoolInfo.class, serial);
-        return schoolInfoList.isEmpty() ? new SchoolSchoolInfo() : schoolInfoList.get(0);
+        List<SchoolSchoolInfo> schoolSchoolInfoList = schoolJdbcTemplate.query(sql, new BeanPropertyRowMapper<>(SchoolSchoolInfo.class), serial);
+        return schoolSchoolInfoList.isEmpty() ? new SchoolSchoolInfo() : schoolSchoolInfoList.get(0);
     }
 
     public boolean addSchoolInfo(int serial, String name, String address) {

@@ -16,7 +16,7 @@ public class SchoolServiceTest {
 
     public SchoolRequest getRequest() {
         SchoolRequest request = new SchoolRequest();
-        request.setSerial(1);
+        request.setSerial(10001);
         return request;
     }
 

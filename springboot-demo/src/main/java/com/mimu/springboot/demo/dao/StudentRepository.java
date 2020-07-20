@@ -2,6 +2,7 @@ package com.mimu.springboot.demo.dao;
 
 import com.mimu.springboot.demo.model.StudentStudentInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +23,7 @@ public class StudentRepository {
 
     public StudentStudentInfo getStudentInfo(int no) {
         String sql = "select * from student_info where no=?";
-        List<StudentStudentInfo> studentInfoList = studentJdbcTemplate.queryForList(sql, StudentStudentInfo.class, no);
+        List<StudentStudentInfo> studentInfoList = studentJdbcTemplate.query(sql, new BeanPropertyRowMapper<>(StudentStudentInfo.class), no);
         return studentInfoList.isEmpty() ? null : studentInfoList.get(0);
     }
 

@@ -18,12 +18,12 @@ public class CommonServiceTest {
     private CommonService commonService;
 
     @Test
-    public void getUserInfo() {
-        System.out.println(commonService.getSchoolInfo(10));
+    public void getSchoolInfo() {
+        System.out.println(commonService.getSchoolInfo(10001));
     }
 
     @Test
-    public void getTermInfo() {
+    public void getStudentInfo() {
         System.out.println(commonService.getStudentInfo(1));
     }
 }

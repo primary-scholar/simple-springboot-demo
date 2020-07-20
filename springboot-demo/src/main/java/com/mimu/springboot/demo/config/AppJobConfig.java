@@ -4,6 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@EnableScheduling
+//@EnableScheduling // 开启 定时任务
 public class AppJobConfig {
 }

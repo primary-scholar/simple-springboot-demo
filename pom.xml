@@ -41,6 +41,7 @@
         <dubbo.version>2.7.7</dubbo.version>
         <mybatis.springboot.version>2.0.1</mybatis.springboot.version>
         <druid.springboot.version>1.1.18</druid.springboot.version>
+        <spring.cloud.netflix.hystrix.version>2.2.3.RELEASE</spring.cloud.netflix.hystrix.version>
 
         <junit.version>4.12</junit.version>
     </properties>
@@ -56,6 +57,16 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring.cloud.netflix.hystrix.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+                <version>${spring.cloud.netflix.hystrix.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>

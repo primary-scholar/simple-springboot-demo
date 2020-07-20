@@ -1,19 +1,11 @@
 package com.mimu.springboot.demo.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collections;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 
 /**
@@ -33,9 +25,20 @@ import java.util.Collections;
  */
 //@ServletComponentScan
 @Configuration
+@EnableHystrixDashboard
 public class AppServletConfig {
 
-    @Bean
+    /*@Bean
+    public ServletRegistrationBean hystrixMetricsServlet() {
+        HystrixMetricsStreamServlet metricsStreamServlet = new HystrixMetricsStreamServlet();
+        ServletRegistrationBean<HystrixMetricsStreamServlet> registrationBean = new ServletRegistrationBean<>(metricsStreamServlet);
+        registrationBean.setLoadOnStartup(1);
+        registrationBean.addUrlMappings("/hystrix.stream");
+        registrationBean.setName("HystrixMetricsStreamServlet");
+        return registrationBean;
+    }*/
+
+    /*@Bean
     public FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new CustomFilter());
@@ -44,9 +47,9 @@ public class AppServletConfig {
         filterRegistrationBean.setName("userDataFilter");
         filterRegistrationBean.setOrder(10);
         return filterRegistrationBean;
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public ServletRegistrationBean servletRegistrationBean() {
         ServletRegistrationBean<Servlet> registrationBean = new ServletRegistrationBean<>();
         CustomServlet servlet = new CustomServlet();
@@ -55,13 +58,13 @@ public class AppServletConfig {
         registrationBean.setUrlMappings(Collections.singleton("/customServlet"));
         registrationBean.setLoadOnStartup(2);
         return registrationBean;
-    }
+    }*/
 
     /**
      * 第一种方式 添加注解
      */
     //@WebServlet(name = "customServlet" ,urlPatterns = "/customServlet")
-    static class CustomServlet extends HttpServlet {
+    /*static class CustomServlet extends HttpServlet {
         private static final Logger logger = LoggerFactory.getLogger(CustomServlet.class);
 
         @Override
@@ -81,14 +84,14 @@ public class AppServletConfig {
         public void init(ServletConfig config) throws ServletException {
             logger.info("customServlet init");
         }
-    }
+    }*/
 
 
     /**
      * 第一种方式 添加注解
      */
     //@WebFilter(filterName = "customFilter", urlPatterns = "/*")
-    static class CustomFilter implements Filter {
+    /*static class CustomFilter implements Filter {
         private static final Logger logger = LoggerFactory.getLogger(CustomFilter.class);
 
         @Override
@@ -106,7 +109,7 @@ public class AppServletConfig {
         public void destroy() {
 
         }
-    }
+    }*/
 
 
 }

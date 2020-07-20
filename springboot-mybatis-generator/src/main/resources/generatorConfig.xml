@@ -16,7 +16,7 @@
 -->
     <!-- one database one context  -->
     <!-- 一个数据库一个context -->
-    <context id="mybatisCustomUserDatabase" targetRuntime="MyBatis3">
+    <context id="mybatisSchoolDatabase" targetRuntime="MyBatis3">
         <!-- this plugin generate the java pojo which implements serializable interface and
           generate the uuid code-->
         <!-- 生成的pojo，将implements Serializable -->
@@ -29,9 +29,9 @@
 
         <!-- jdbc connection information  -->
         <!-- 数据库链接URL、用户名、密码 -->
-        <jdbcConnection driverClass="${db.driver}" connectionURL="${user.db.user.url}"
-                        userId="${user.db.user.username}"
-                        password="${user.db.user.password}"/>
+        <jdbcConnection driverClass="${school.datasource.driverClassName}" connectionURL="${school.datasource.url}"
+                        userId="${school.datasource.username}"
+                        password="${school.datasource.password}"/>
 
         <!-- java type convert     java 类型转换 -->
         <javaTypeResolver>
@@ -42,8 +42,8 @@
 
         <!-- 生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，
             也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下 -->
-        <javaModelGenerator targetPackage="${user.generator.targetPackage.model}"
-                            targetProject="${user.generator.targetPackage}">
+        <javaModelGenerator targetPackage="${school.generator.targetPackage.model}"
+                            targetProject="${school.generator.targetPackage}">
             <!-- 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.model，
             true:com.mimu.simple.springboot.mybatis.generator.model.[schemaName]
             此处的 schemaName 为 下面 <table> 元素指定的 achemaName  -->
@@ -54,8 +54,8 @@
 
 
         <!--对应的mapper.xml文件 -->
-        <sqlMapGenerator targetPackage="${user.generator.targetResources.mapper}"
-                         targetProject="${user.generator.targetResources}">
+        <sqlMapGenerator targetPackage="${school.generator.targetPackage.mapper}"
+                         targetProject="${school.generator.targetResources}">
             <!-- 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.mapper，
             true:com.mimu.simple.springboot.mybatis.generator.mapper.[schemaName]
             此处的 schemaName 为 下面 <table> 元素指定的 achemaName  -->
@@ -72,8 +72,8 @@
          -->
         <!-- 对应的Mapper接口类文件 -->
         <javaClientGenerator type="MIXEDMAPPER"
-                             targetPackage="${user.generator.targetPackage.mapper}"
-                             targetProject="${user.generator.targetPackage}">
+                             targetPackage="${school.generator.targetPackage.mapper}"
+                             targetProject="${school.generator.targetPackage}">
             <!-- 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.mapper，
             true:com.mimu.simple.springboot.mybatis.generator.mapper.[schemaName]
             此处的 schemaName 为 下面 <table> 元素指定的 achemaName  -->
@@ -94,7 +94,7 @@
             &lt;!&ndash;指定 某列的 数据类型  &ndash;&gt;
             <columnOverride column="id" jdbcType="" javaType="" typeHandler=""/>
         </table>-->
-        <table schema="${user.db.user.username}" tableName="term_info" domainObjectName="TermInfo"
+        <table schema="${school.datasource.username}" tableName="course_info" domainObjectName="CourseInfo"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
@@ -102,7 +102,7 @@
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-        <table schema="${user.db.user.username}" tableName="user_info" domainObjectName="UserInfo"
+        <table schema="${school.datasource.username}" tableName="school_info" domainObjectName="SchoolInfo"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
@@ -112,74 +112,74 @@
         </table>
     </context>
 
-    <!--<context id="mybatisCustomTermDatabase" targetRuntime="MyBatis3">
-        &lt;!&ndash; this plugin generate the java pojo which implements serializable interface and
-          generate the uuid code&ndash;&gt;
-        &lt;!&ndash; 生成的pojo，将implements Serializable &ndash;&gt;
+    <context id="mybatisStudentDatabase" targetRuntime="MyBatis3">
+        <!-- this plugin generate the java pojo which implements serializable interface and
+          generate the uuid code-->
+        <!-- 生成的pojo，将implements Serializable -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
-        &lt;!&ndash; comment generator  &ndash;&gt;
+        <!-- comment generator  -->
         <commentGenerator>
-            &lt;!&ndash; suppress all comments 取消所有注释 &ndash;&gt;
+            <!-- suppress all comments 取消所有注释 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
-        &lt;!&ndash; jdbc connection information  &ndash;&gt;
-        &lt;!&ndash; 数据库链接URL、用户名、密码 &ndash;&gt;
-        <jdbcConnection driverClass="${db.driver}" connectionURL="${term.db.user.url}"
-                        userId="${term.db.user.username}"
-                        password="${term.db.user.password}"/>
+        <!-- jdbc connection information  -->
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="${student.datasource.driverClassName}" connectionURL="${student.datasource.url}"
+                        userId="${student.datasource.username}"
+                        password="${student.datasource.password}"/>
 
-        &lt;!&ndash; java type convert     java 类型转换 &ndash;&gt;
+        <!-- java type convert     java 类型转换 -->
         <javaTypeResolver>
-            &lt;!&ndash; 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC DECIMAL
-                和 NUMERIC 类型解析为java.math.BigDecimal &ndash;&gt;
+            <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC DECIMAL
+                和 NUMERIC 类型解析为java.math.BigDecimal -->
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        &lt;!&ndash; 生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，
-            也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下 &ndash;&gt;
-        <javaModelGenerator targetPackage="${term.generator.targetPackage.model}"
-                            targetProject="${term.generator.targetPackage}">
-            &lt;!&ndash; 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.model，
+        <!-- 生成model模型，对应的包路径，以及文件存放路径(targetProject)，targetProject可以指定具体的路径,如./src/main/java，
+            也可以使用“MAVEN”来自动生成，这样生成的代码会在target/generatord-source目录下 -->
+        <javaModelGenerator targetPackage="${student.generator.targetPackage.model}"
+                            targetProject="${student.generator.targetPackage}">
+            <!-- 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.model，
             true:com.mimu.simple.springboot.mybatis.generator.model.[schemaName]
-            此处的 schemaName 为 下面 <table> 元素指定的 achemaName  &ndash;&gt;
+            此处的 schemaName 为 下面 <table> 元素指定的 achemaName  -->
             <property name="enableSubPackages" value="false"/>
-            &lt;!&ndash; 从数据库返回的值被清理前后的空格 &ndash;&gt;
+            <!-- 从数据库返回的值被清理前后的空格 -->
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
 
-        &lt;!&ndash;对应的mapper.xml文件 &ndash;&gt;
-        <sqlMapGenerator targetPackage="${term.generator.targetResources.mapper}"
-                         targetProject="${term.generator.targetResources}">
-            &lt;!&ndash; 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.mapper，
+        <!--对应的mapper.xml文件 -->
+        <sqlMapGenerator targetPackage="${student.generator.targetPackage.mapper}"
+                         targetProject="${student.generator.targetResources}">
+            <!-- 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.mapper，
             true:com.mimu.simple.springboot.mybatis.generator.mapper.[schemaName]
-            此处的 schemaName 为 下面 <table> 元素指定的 achemaName  &ndash;&gt;
+            此处的 schemaName 为 下面 <table> 元素指定的 achemaName  -->
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        &lt;!&ndash;
+        <!--
         Mapper接口的实现方式有 3 种：
         ANNOTATEDMAPPER（纯注解方式）
         XMLMAPPER（纯XML方式）和
         MIXEDMAPPER （混合方式），
         通常我们会设置为MIXEDMAPPER (混合方式)，对于Mapper接口中简单的方式，
         会只用注解形式，对于复杂方法，会使用 XML 的形似
-         &ndash;&gt;
-        &lt;!&ndash; 对应的Mapper接口类文件 &ndash;&gt;
+         -->
+        <!-- 对应的Mapper接口类文件 -->
         <javaClientGenerator type="MIXEDMAPPER"
-                             targetPackage="${term.generator.targetPackage.mapper}"
-                             targetProject="${term.generator.targetPackage}">
-            &lt;!&ndash; 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.mapper，
+                             targetPackage="${student.generator.targetPackage.mapper}"
+                             targetProject="${student.generator.targetPackage}">
+            <!-- 是否在当前路径下新加一层schema, false 路径com.mimu.simple.springboot.mybatis.generator.mapper，
             true:com.mimu.simple.springboot.mybatis.generator.mapper.[schemaName]
-            此处的 schemaName 为 下面 <table> 元素指定的 achemaName  &ndash;&gt;
+            此处的 schemaName 为 下面 <table> 元素指定的 achemaName  -->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        &lt;!&ndash; 列出要生成 代码的数据表  &ndash;&gt;
-        &lt;!&ndash; schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
-                   是否生成 example类   &ndash;&gt;
-        &lt;!&ndash;<table tableName="term_info" domainObjectName="termInfo"
+        <!-- 列出要生成 代码的数据表  -->
+        <!-- schema即为数据库名 tableName为对应的数据库表 domainObjectName是要生成的实体类 enable*ByExample
+                   是否生成 example类   -->
+        <!--<table tableName="term_info" domainObjectName="termInfo"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
@@ -189,22 +189,22 @@
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
             &lt;!&ndash;指定 某列的 数据类型  &ndash;&gt;
             <columnOverride column="id" jdbcType="" javaType="" typeHandler=""/>
-        </table>&ndash;&gt;
-        <table tableName="term_info" domainObjectName="TermInfo"
+        </table>-->
+        <table schema="${student.datasource.username}" tableName="class_info" domainObjectName="ClassInfo"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
-            &lt;!&ndash; 用于指定生成实体类时是否使用实际的列名作为实体类的属性名。false是 Camel Case风格&ndash;&gt;
+            <!-- 用于指定生成实体类时是否使用实际的列名作为实体类的属性名。false是 Camel Case风格-->
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-        <table tableName="user_info" domainObjectName="UserInfo"
+        <table schema="${student.datasource.username}" tableName="student_info" domainObjectName="StudentInfo"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"
                enableUpdateByExample="false">
-            &lt;!&ndash; 用于指定生成实体类时是否使用实际的列名作为实体类的属性名。false是 Camel Case风格&ndash;&gt;
+            <!-- 用于指定生成实体类时是否使用实际的列名作为实体类的属性名。false是 Camel Case风格-->
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
-    </context>-->
+    </context>
 </generatorConfiguration>

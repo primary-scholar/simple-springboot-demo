@@ -2,6 +2,7 @@ package com.mimu.springboot.dubbo.provider.dao;
 
 import com.mimu.springboot.dubbo.provider.model.SchoolSchoolInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,7 +24,7 @@ public class SchoolRepository {
 
     public SchoolSchoolInfo getSchoolInfo(long serial) {
         String sql = "select * from school_info where serial=?";
-        List<SchoolSchoolInfo> schoolInfoList = schoolJdbcTemplate.queryForList(sql, SchoolSchoolInfo.class, serial);
+        List<SchoolSchoolInfo> schoolInfoList = schoolJdbcTemplate.query(sql, new BeanPropertyRowMapper<>(SchoolSchoolInfo.class), serial);
         return schoolInfoList.isEmpty() ? new SchoolSchoolInfo() : schoolInfoList.get(0);
     }
 

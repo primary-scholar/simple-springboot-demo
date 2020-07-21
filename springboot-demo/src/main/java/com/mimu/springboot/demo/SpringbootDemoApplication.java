@@ -1,10 +1,12 @@
 package com.mimu.springboot.demo;
 
+import com.mimu.springboot.demo.config.ProjectApplicationConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
+import org.springframework.context.annotation.Import;
 
 /**
  * servlet 容器接受请求 到处理完毕 并返回结果给 servlet 容器的处理流程
@@ -24,7 +26,7 @@ import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
         DataSourceTransactionManagerAutoConfiguration.class,
         JdbcTemplateAutoConfiguration.class})
-//@Import(value = {ProjectApplicationConfig.class}) // 此处可引可不引
+@Import(value = {ProjectApplicationConfig.class}) // 此处可引可不引
 public class SpringbootDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringbootDemoApplication.class);

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * author: mimu
@@ -19,11 +20,13 @@ import org.springframework.stereotype.Service;
 public class SchoolService {
     private static final Logger logger = LoggerFactory.getLogger(SchoolService.class);
     private SchoolRepository schoolRepository;
+    private RestTemplate restTemplate;
 
     @Autowired
     public void setSchoolRepository(SchoolRepository schoolRepository) {
         this.schoolRepository = schoolRepository;
     }
+
 
     @HystrixCommand(commandProperties = {
             @HystrixProperty(name = HystrixPropertiesManager.EXECUTION_ISOLATION_THREAD_TIMEOUT_IN_MILLISECONDS, value = "3000"),

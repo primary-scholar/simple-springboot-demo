@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Import;
  * date: 2019/10/9
  */
 @Configuration
-@Import({AppDataSourceConfig.class, AppServletConfig.class, AppRedisConfig.class, AppJobConfig.class})
+@Import({AppDataSourceConfig.class, AppServletConfig.class, AppRedisConfig.class, AppRestTemplateConfig.class, AppJobConfig.class})
 public class ProjectApplicationConfig {
 }

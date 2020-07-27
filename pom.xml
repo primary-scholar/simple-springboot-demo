@@ -42,7 +42,10 @@
         <dubbo.version>2.7.7</dubbo.version>
         <mybatis.springboot.version>2.0.1</mybatis.springboot.version>
         <druid.springboot.version>1.1.18</druid.springboot.version>
-        <spring.cloud.netflix.hystrix.version>2.2.3.RELEASE</spring.cloud.netflix.hystrix.version>
+        <!-- spring.cloud.netflix.hystrix.version 2.2.3  中由于 dashboard 中使用的
+         js 版本不兼容 导致 dashboard 中不展示 数据，实际上 http://localhost:19090/actuator/hystrix.stream
+         中 是有 数据，所以 降低版本 到 2.2.2-->
+        <spring.cloud.netflix.hystrix.version>2.2.2.RELEASE</spring.cloud.netflix.hystrix.version>
 
         <junit.version>4.12</junit.version>
     </properties>

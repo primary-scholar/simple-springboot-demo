@@ -15,6 +15,7 @@
         <module>springboot-mybatis-demo</module>
         <module>springboot-mybatis-generator</module>
         <module>springboot-hystrix</module>
+        <module>springboot-webflux-demo</module>
     </modules>
 
     <name>simple-springboot-demo</name>

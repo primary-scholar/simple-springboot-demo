@@ -47,6 +47,7 @@
          js 版本不兼容 导致 dashboard 中不展示 数据，实际上 http://localhost:19090/actuator/hystrix.stream
          中 是有 数据，所以 降低版本 到 2.2.2-->
         <spring.cloud.netflix.hystrix.version>2.2.2.RELEASE</spring.cloud.netflix.hystrix.version>
+        <spring.cloud.feign.version>1.4.7.RELEASE</spring.cloud.feign.version>
 
         <junit.version>4.12</junit.version>
     </properties>
@@ -72,6 +73,11 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
                 <version>${spring.cloud.netflix.hystrix.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+                <version>${spring.cloud.feign.version}</version>
             </dependency>
             <dependency>
                 <groupId>mysql</groupId>

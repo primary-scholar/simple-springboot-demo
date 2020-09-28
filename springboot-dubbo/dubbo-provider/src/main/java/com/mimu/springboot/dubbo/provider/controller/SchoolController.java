@@ -1,3 +1,4 @@
+/*
 package com.mimu.springboot.dubbo.provider.controller;
 
 import com.mimu.springboot.dubbo.api.model.SchoolData;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+*/
 /**
  * author: mimu
  * date: 2019/6/29
- */
+ *//*
+
 @RestController
 public class SchoolController {
     private static final Logger logger = LoggerFactory.getLogger(SchoolController.class);
@@ -38,3 +41,4 @@ public class SchoolController {
         return schoolInfo;
     }
 }
+*/

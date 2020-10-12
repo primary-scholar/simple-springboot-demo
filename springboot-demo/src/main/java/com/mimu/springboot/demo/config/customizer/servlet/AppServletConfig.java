@@ -1,16 +1,18 @@
 package com.mimu.springboot.demo.config.customizer.servlet;
 
-import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.skywalking.apm.toolkit.trace.TraceContext;
+import org.slf4j.MDC;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
+import javax.servlet.ServletRequestEvent;
+import javax.servlet.ServletRequestListener;
+import java.util.Optional;
+import java.util.UUID;
 
 
 /**
@@ -18,6 +20,24 @@ import javax.servlet.annotation.WebListener;
  * 1.使用spring 注解方式
  * 1.1 @ServletComponentScan, @WebFilter, @WebServlet, @webListener
  * 2.使用 RegistrationBean 进行 bean 的 注入 @Bean
+ * <p>
+ * author: mimu
+ * date: 2020/2/5
+ * <p>
+ * author: mimu
+ * date: 2020/2/5
+ * <p>
+ * author: mimu
+ * date: 2020/2/5
+ * <p>
+ * author: mimu
+ * date: 2020/2/5
+ * <p>
+ * author: mimu
+ * date: 2020/2/5
+ * <p>
+ * author: mimu
+ * date: 2020/2/5
  */
 
 /**
@@ -33,6 +53,17 @@ import javax.servlet.annotation.WebListener;
 @EnableHystrix
 @EnableHystrixDashboard
 public class AppServletConfig {
+
+    /**
+     * 第二种方式 通过 registrationBean的方式添加
+     * @return
+     */
+    @Bean
+    public ServletListenerRegistrationBean servletListenerRegistrationBean() {
+        ServletListenerRegistrationBean<ServletRequestListener> registrationBean = new ServletListenerRegistrationBean<>();
+        registrationBean.setListener(new AppServletRequestListener());
+        return registrationBean;
+    }
 
     /*@Bean
     public ServletRegistrationBean hystrixMetricsServlet() {
@@ -116,6 +147,30 @@ public class AppServletConfig {
 
         }
     }*/
+
+    /**
+     * 第一种方式 添加注解
+     */
+    //@WebListener
+    class AppServletRequestListener implements ServletRequestListener {
+        private static final String traceKey = "RTK";
+
+        @Override
+        public void requestDestroyed(ServletRequestEvent sre) {
+            MDC.clear();
+        }
+
+        @Override
+        public void requestInitialized(ServletRequestEvent sre) {
+            String flag = Optional.of(sre).map(servletRequestEvent -> servletRequestEvent.getServletRequest().getParameter("flag")).orElse(null);
+            String traceId = TraceContext.traceId();
+            if (StringUtils.isBlank(traceId)) {
+                traceId = StringUtils.replace(String.valueOf(UUID.randomUUID()), "-", "");
+            }
+            traceId = String.join("", "##", traceId);
+            MDC.put(traceKey, traceId);
+        }
+    }
 
 
 }

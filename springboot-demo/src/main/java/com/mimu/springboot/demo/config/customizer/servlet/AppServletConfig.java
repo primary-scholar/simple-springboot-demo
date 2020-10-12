@@ -1,12 +1,16 @@
-package com.mimu.springboot.demo.config;
+package com.mimu.springboot.demo.config.customizer.servlet;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 
 /**

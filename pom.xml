@@ -50,7 +50,7 @@
         <spring.cloud.netflix.hystrix.version>2.2.2.RELEASE</spring.cloud.netflix.hystrix.version>
         <spring.cloud.feign.version>1.4.7.RELEASE</spring.cloud.feign.version>
 
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
     <dependencyManagement>

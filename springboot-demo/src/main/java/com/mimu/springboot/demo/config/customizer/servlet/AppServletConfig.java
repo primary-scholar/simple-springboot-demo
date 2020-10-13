@@ -26,11 +26,6 @@ import java.util.UUID;
  */
 
 /**
- author: mimu
- date: 2020/2/5
- */
-
-/**
  * 第一种方式 添加注解
  */
 //@ServletComponentScan
@@ -41,6 +36,7 @@ public class AppServletConfig {
 
     /**
      * 第二种方式 通过 registrationBean的方式添加
+     *
      * @return
      */
     @Bean

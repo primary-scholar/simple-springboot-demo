@@ -20,7 +20,7 @@ import java.util.concurrent.Callable;
  * 在 skyWalking 存在的情形下 依然支持
  */
 @Configuration(proxyBeanMethods = false)
-public class AppHystrixConcurrentStrategyCustom {
+public class AppHystrixConcurrentStrategyConfig {
 
     @Configuration(proxyBeanMethods = false)
     public static class DefaultHystrixConcurrentStrategyReplace {

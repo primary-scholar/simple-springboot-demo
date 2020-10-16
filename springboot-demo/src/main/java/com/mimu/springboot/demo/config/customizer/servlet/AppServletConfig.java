@@ -148,7 +148,7 @@ public class AppServletConfig {
             if (StringUtils.isBlank(traceId)) {
                 traceId = StringUtils.replace(String.valueOf(UUID.randomUUID()), "-", "");
             }
-            traceId = String.join("", traceId, ",", flag);
+            traceId = String.join("", traceId, ".", flag);
             MDC.put(traceKey, traceId);
         }
     }

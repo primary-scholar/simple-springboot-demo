@@ -10,7 +10,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout
-                    pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} |-%-5level [%t] %M\(%c{0}.java:%L\) - %msg [%traceId] %n"/>
+                    pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} |-%-5level [%t] %M\(%c{0}.java:%L\) - %msg [%traceId] [%X{RTK}] %n"/>
         </Console>
 
         <RollingFile name="RollingFileInfo" fileName="${path}/${name}.log"

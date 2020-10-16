@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+/**
+ * 支持 Hystrix 的跨线程的  log mdc 操作
+ */
 @Configuration(proxyBeanMethods = false)
 public class AppHystrixConcurrentStrategyCustom {
 

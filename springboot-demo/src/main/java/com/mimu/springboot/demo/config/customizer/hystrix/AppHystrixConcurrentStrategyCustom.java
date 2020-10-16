@@ -17,6 +17,7 @@ import java.util.concurrent.Callable;
 
 /**
  * 支持 Hystrix 的跨线程的  log mdc 操作
+ * 在 skyWalking 存在的情形下 依然支持
  */
 @Configuration(proxyBeanMethods = false)
 public class AppHystrixConcurrentStrategyCustom {

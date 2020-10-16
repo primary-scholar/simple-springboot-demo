@@ -17,7 +17,8 @@
                      filePattern="${path}/${name}.%d{yyyy-MM-dd}.log">
             <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
             <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%t] - %msg [%traceId] %n"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%t] - %msg [%traceId] [%X{RTK}] %n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
                 <SizeBasedTriggeringPolicy size="1 GB"/>
@@ -28,7 +29,7 @@
         <RollingFile name="ExposeRollingFileInfo" fileName="${path}/serverLog/${name}.log"
                      filePattern="${path}/serverLog/${name}-%d{yyyy-MM-dd-HH}.log">
             <ThresholdFilter level="INFO" onMatch="ACCEPT"/>
-            <PatternLayout pattern="%d %-5p [%t] %c（%L）| %msg [%traceId] %n"/>
+            <PatternLayout pattern="%d %-5p [%t] %c（%L）| %msg [%traceId] [%X{RTK}] %n"/>
 
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
@@ -39,7 +40,8 @@
         <RollingFile name="RollingFileError" fileName="${path}/${name}.err"
                      filePattern="${path}/${name}-%d{yyyy-MM-dd}.err">
             <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%t] - %msg [%traceId] %n"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%t] - %msg [%traceId] [%X{RTK}] %n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>

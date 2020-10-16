@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Configuration(proxyBeanMethods = false)
-public class AppMvcConfigurerCustomer implements WebMvcConfigurer {
-    private static final Logger logger = LoggerFactory.getLogger(AppMvcConfigurerCustomer.class);
+public class AppMvcConfigurerConfig implements WebMvcConfigurer {
+    private static final Logger logger = LoggerFactory.getLogger(AppMvcConfigurerConfig.class);
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

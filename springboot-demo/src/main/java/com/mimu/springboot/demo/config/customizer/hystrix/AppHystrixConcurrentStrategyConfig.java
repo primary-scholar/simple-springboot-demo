@@ -32,9 +32,8 @@ public class AppHystrixConcurrentStrategyConfig {
             HystrixEventNotifier eventNotifier = HystrixPlugins.getInstance().getEventNotifier();
             HystrixMetricsPublisher metricsPublisher = HystrixPlugins.getInstance().getMetricsPublisher();
             HystrixPropertiesStrategy propertiesStrategy = HystrixPlugins.getInstance().getPropertiesStrategy();
-            HystrixConcurrencyStrategy originStrategy = HystrixPlugins.getInstance().getConcurrencyStrategy();
             HystrixPlugins.reset();
-            HystrixPlugins.getInstance().registerConcurrencyStrategy(new CustomHystrixConcurrentStrategy(originStrategy));
+            HystrixPlugins.getInstance().registerConcurrencyStrategy(new CustomHystrixConcurrentStrategy(concurrencyStrategy));
             HystrixPlugins.getInstance().registerCommandExecutionHook(commandExecutionHook);
             HystrixPlugins.getInstance().registerEventNotifier(eventNotifier);
             HystrixPlugins.getInstance().registerMetricsPublisher(metricsPublisher);

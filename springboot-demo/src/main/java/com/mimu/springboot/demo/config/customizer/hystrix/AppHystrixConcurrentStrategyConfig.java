@@ -68,7 +68,8 @@ public class AppHystrixConcurrentStrategyConfig {
                         MDC.setContextMap(context);
                         return delegate.call();
                     } finally {
-                        MDC.clear();
+                        for (String key : context.keySet())
+                            MDC.remove(key);
                     }
                 }
             }

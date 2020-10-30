@@ -51,9 +51,6 @@
         <logger name="serverLogger" level="INFO">
             <appender-ref ref="ExposeRollingFileInfo"/>
         </logger>
-        <logger name="org.apache.dubbo.common.logger.LoggerFactory" level="INFO">
-            <appender-ref ref="RollingFileInfo"/>
-        </logger>
 
         <root level="INFO">
             <appender-ref ref="Console"/>

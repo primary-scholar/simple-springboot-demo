@@ -112,7 +112,6 @@
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>*.properties</exclude>
-                    <exclude>*.xml</exclude>
                 </excludes>
             </resource>
             <resource>
@@ -121,7 +120,6 @@
                 <includes>
                     <include>application.properties</include>
                     <include>application-${environment}.properties</include>
-                    <include>dubbo.xml</include>
                 </includes>
             </resource>
         </resources>

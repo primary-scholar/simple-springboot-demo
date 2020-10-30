@@ -1,5 +1,6 @@
 package com.mimu.springboot.dubbo.consumer.controller;
 
+import com.mimu.springboot.dubbo.api.model.HelloData;
 import com.mimu.springboot.dubbo.api.model.SchoolData;
 import com.mimu.springboot.dubbo.consumer.service.CommonService;
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * author: mimu
@@ -29,5 +32,17 @@ public class CommonController {
         SchoolData schoolData = commonService.getSchoolData(serial);
         logger.info("schoolData={}", schoolData);
         return schoolData;
+    }
+
+    @RequestMapping(value = "/consumer/hello.do", method = RequestMethod.GET)
+    public HelloData getHelloData(String name) {
+        try {
+            HelloData helloData = commonService.getHelloData(name);
+            logger.info("helloData={}", helloData);
+            return helloData;
+        } catch (ExecutionException | InterruptedException e) {
+            logger.info("error ", e);
+            return null;
+        }
     }
 }

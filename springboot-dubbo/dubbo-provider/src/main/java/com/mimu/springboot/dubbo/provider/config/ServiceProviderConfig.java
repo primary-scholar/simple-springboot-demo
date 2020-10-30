@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * date: 2019/8/18
  */
 @Configuration
-//@ImportResource(locations = "classpath:dubbo.xml")
 @EnableDubbo(scanBasePackageClasses = SchoolDataApiImpl.class)
 public class ServiceProviderConfig {
 

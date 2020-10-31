@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommonService {
 
-    @DubboReference(check = false)
+    @DubboReference(check = false/*,group = "dubbo"*/)
     private SchoolDataApi schoolDataApi;
 
     public SchoolData getSchoolData(int serial) {

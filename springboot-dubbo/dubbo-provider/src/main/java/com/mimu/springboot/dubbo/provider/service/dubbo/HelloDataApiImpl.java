@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * date: 2019/9/18
  */
 @Component
-@DubboService(interfaceClass = HelloDataApi.class, timeout = 100)
+@DubboService(interfaceClass = HelloDataApi.class, timeout = 100/*, group = "dubbo"*/)
 public class HelloDataApiImpl implements HelloDataApi {
     private static final Logger logger = LoggerFactory.getLogger(HelloDataApiImpl.class);
 

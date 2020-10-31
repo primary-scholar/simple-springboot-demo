@@ -15,11 +15,11 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackageClasses = CommonService.class)
 @EnableDubbo(scanBasePackageClasses = CommonService.class)
 public class ServiceConsumerConfig {
-    @Bean
+/*    @Bean
     public MetricsConfig metricsConfig() {
         MetricsConfig config = new MetricsConfig();
         config.setProtocol("dubbo");
         config.setPort("20880");
         return config;
-    }
+    }*/
 }

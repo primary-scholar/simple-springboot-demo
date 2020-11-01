@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 public class CommonService {
     private static final Logger logger = LoggerFactory.getLogger(CommonService.class);
 
-    @DubboReference(check = false/*,group = "dubbo"*/)
+    @DubboReference(check = false)
     private SchoolDataApi schoolDataApi;
 
     @DubboReference(check = false, async = true)

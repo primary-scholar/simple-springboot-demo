@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * date: 2019/8/18
  */
 @Component
-@DubboService(interfaceClass = SchoolDataApi.class, timeout = 5000/*, group = "dubbo"*/)
+@DubboService(interfaceClass = SchoolDataApi.class, timeout = 5000)
 public class SchoolDataApiImpl implements SchoolDataApi {
     private SchoolService schoolService;
 

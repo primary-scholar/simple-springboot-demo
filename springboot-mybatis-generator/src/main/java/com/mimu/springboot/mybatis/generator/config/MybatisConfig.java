@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * author: mimu
  * date: 2019/12/18
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableTransactionManagement
 @MapperScan(basePackageClasses = {SchoolInfoMapper.class, StudentInfoMapper.class})
 public class MybatisConfig {

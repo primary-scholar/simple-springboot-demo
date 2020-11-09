@@ -16,7 +16,7 @@ import java.util.Map;
  * author: mimu
  * date: 2019/12/18
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class DataSourceConfig {
     private static final Logger logger = LoggerFactory.getLogger(DataSourceConfig.class);
 

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  author: mimu
  date: 2019/12/19
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AspectConfig {
 

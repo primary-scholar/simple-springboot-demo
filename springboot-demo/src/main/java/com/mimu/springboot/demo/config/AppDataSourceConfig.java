@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  * author: mimu
  * date: 2019/7/5
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableTransactionManagement(proxyTargetClass = true)
 public class AppDataSourceConfig {
     private static final Logger logger = LoggerFactory.getLogger(AppDataSourceConfig.class);

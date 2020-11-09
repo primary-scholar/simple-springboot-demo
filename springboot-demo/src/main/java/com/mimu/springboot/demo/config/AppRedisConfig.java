@@ -13,7 +13,7 @@ import org.springframework.data.redis.cache.RedisCache;
  date: 2020/4/16
  */
 @Configuration
-@EnableCaching(proxyTargetClass = true)
+@EnableCaching(proxyTargetClass = false)
 public class AppRedisConfig {
 
     /**

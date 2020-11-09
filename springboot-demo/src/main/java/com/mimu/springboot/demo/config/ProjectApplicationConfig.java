@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
  * author: mimu
  * date: 2019/10/9
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @Import({AppDataSourceConfig.class, AppServletConfig.class, AppRedisConfig.class, AppRestTemplateConfig.class, AppJobConfig.class, AppHystrixConcurrentStrategyConfig.class})
 public class ProjectApplicationConfig {
 }

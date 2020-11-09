@@ -16,8 +16,8 @@ import java.util.Map;
 
 
 /**
- author: mimu
- date: 2020/5/14
+ * author: mimu
+ * date: 2020/5/14
  */
 public class AppRedisCacheManagerBuilderCustomer implements RedisCacheManagerBuilderCustomizer {
 
@@ -31,7 +31,6 @@ public class AppRedisCacheManagerBuilderCustomer implements RedisCacheManagerBui
     }
 
     /**
-     * expire milliseconds
      * @param expire
      * @param serializer
      * @return

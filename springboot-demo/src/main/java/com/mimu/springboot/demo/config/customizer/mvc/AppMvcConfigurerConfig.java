@@ -52,11 +52,15 @@ public class AppMvcConfigurerConfig implements WebMvcConfigurer {
         resolvers.add(new HandlerMethodArgumentResolver() {
             @Override
             public boolean supportsParameter(MethodParameter parameter) {
-                return false;
+                boolean paraFlag = false;
+                //paraFlag = parameter.hasMethodAnnotation(aAnnotation.class);
+                //paraFlag = parameter.getParameterType().isAnnotationPresent(aAnnotation.class);
+                return paraFlag;
             }
 
             @Override
             public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+                HttpServletRequest httpServletRequest = webRequest.getNativeRequest(HttpServletRequest.class);
                 return null;
             }
         });

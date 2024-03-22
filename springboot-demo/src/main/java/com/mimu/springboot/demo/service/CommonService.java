@@ -7,6 +7,9 @@ import com.mimu.springboot.demo.model.StudentStudentInfo;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.hystrix.contrib.javanica.conf.HystrixPropertiesManager;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ public class CommonService {
 
     private SchoolRepository schoolRepository;
     private StudentRepository studentRepository;
+    private RocketMQTemplate rocketMQTemplate;
 
     @Autowired
     public void setStudentRepository(StudentRepository studentRepository) {
@@ -32,6 +36,11 @@ public class CommonService {
     @Autowired
     public void setSchoolRepository(SchoolRepository schoolRepository) {
         this.schoolRepository = schoolRepository;
+    }
+
+    @Autowired
+    public void setRocketMQTemplate(RocketMQTemplate rocketMQTemplate) {
+        this.rocketMQTemplate = rocketMQTemplate;
     }
 
     @Transactional(transactionManager = "schoolTxManager", rollbackFor = RuntimeException.class)
@@ -62,6 +71,11 @@ public class CommonService {
         StudentStudentInfo studentInfo = studentRepository.getStudentInfo(no);
         logger.info("{}", studentInfo);
         return studentInfo;
+    }
+
+    public boolean publishEvent() {
+        SendResult sendResult = rocketMQTemplate.syncSend("", "");
+        return sendResult.getSendStatus().equals(SendStatus.SEND_OK);
     }
 
     private boolean addSchoolInfo(int serial, String name, String address) {

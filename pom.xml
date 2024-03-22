@@ -50,6 +50,7 @@
         <spring.cloud.netflix.hystrix.version>2.2.2.RELEASE</spring.cloud.netflix.hystrix.version>
         <spring.cloud.feign.version>1.4.7.RELEASE</spring.cloud.feign.version>
         <transmittable.thread.local>2.7.0</transmittable.thread.local>
+        <rocket.springboot.version>2.2.1</rocket.springboot.version>
 
         <junit.version>4.13.1</junit.version>
     </properties>
@@ -119,6 +120,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.springboot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocket.springboot.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.skywalking</groupId>
